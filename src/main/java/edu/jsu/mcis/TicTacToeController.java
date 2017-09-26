@@ -1,6 +1,7 @@
 package edu.jsu.mcis;
 
 import java.util.Scanner;
+import java.lang.Exception;
 
 public class TicTacToeController {
 
@@ -35,8 +36,24 @@ public class TicTacToeController {
            error message using view's showInputError() if input is invalid. */
         
         /* INSERT YOUR CODE HERE */
+        boolean goodInput = false;
 
-        
+        while (!goodInput) {
+                try {
+                        if(!model.makeMark(keyboard.nextInt(), keyboard.nextInt())) {
+                                view.showInputError();
+                                view.showNextMovePrompt();
+                        }
+                        else {
+                                goodInput = true;
+                        }
+                }
+
+                catch (Exception e){
+                        keyboard.next();
+                        view.showInputError();
+                        view.showNextMovePrompt();
+                }
+        }			       
     }
-
 }
